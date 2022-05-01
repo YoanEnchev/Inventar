@@ -10,9 +10,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query( "select o from Product o where id not in :ids" )
-    List<Product> whereNotIds(@Param("ids") List<Long> postIdsList);
-
     @Modifying
     @Transactional
     @Query(value = "UPDATE Product t SET is_deleted = true WHERE t.year < :year")
